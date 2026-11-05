@@ -1,0 +1,23 @@
+@import "tailwindcss";
+
+/* Alliance Media palette (PLAN.md section 3). Light theme only for now. */
+@theme {
+  --color-burgundy: #4a1528;
+  --color-burgundy-700: #3a1020;
+  --color-gold: #e8941a;
+  --color-tint: #f9f0f2;
+  --color-cream: #fbf8f5;
+  --color-ink: #1a1a2e;
+  --color-brand-green: #1a6040;
+  --font-sans: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+:root {
+  color-scheme: light;
+}
+
+body {
+  background: var(--color-cream);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}

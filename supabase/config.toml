@@ -1,0 +1,16 @@
+# Local Supabase settings for `supabase start` (Supabase CLI). Only the values that
+# differ from the CLI defaults are listed. Hosted projects are configured in the dashboard.
+project_id = "chordusam"
+
+[db]
+major_version = 16
+
+[auth]
+site_url = "http://localhost:3000"
+additional_redirect_urls = ["http://localhost:3000/auth/callback"]
+# Staff accounts are created by an Admin (or `npm run seed:users`), never self sign-up.
+enable_signup = false
+
+[auth.email]
+enable_signup = false
+enable_confirmations = false
