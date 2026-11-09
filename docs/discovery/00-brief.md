@@ -57,21 +57,21 @@ What AMPL sells, according to its website:
 
 ## 6. Team and outputs
 
-| # | Role | Output file |
-|---|---|---|
-| R1 | Market researcher: media and production management, studio ERPs | `docs/discovery/research/R1-media-production-erp.md` |
-| R2 | People Ops SME: HRIS, payroll, Sri Lanka statutory, attendance devices | `docs/discovery/research/R2-hris-payroll-sri-lanka.md` |
-| R3 | Market researcher: POS, rental and booking, finance, SL payments and tax | `docs/discovery/research/R3-pos-booking-finance.md` |
-| R4 | Market researcher: creative ops (review/approval, DAM, rights and royalties, channel revenue, AI production) | `docs/discovery/research/R4-creative-ops-rights.md` |
-| BA | Business Analyst: BRD | `docs/discovery/10-brd.md` |
-| BA | Business Analyst: gap analysis | `docs/discovery/11-gap-analysis.md` |
-| PMM | Product Marketing Manager: benchmark and USPs | `docs/discovery/12-benchmark-usp.md` |
-| PD | Product Designer: UX, information architecture, journeys | `docs/discovery/13-ux-design.md` |
-| CFO | CFO: business case, TCO, build vs buy, finance requirements | `docs/discovery/14-business-case.md` |
-| SEC | Compliance and security | `docs/discovery/15-compliance-security.md` |
-| SA | Solution Architect: solution design | `docs/discovery/20-solution-design.md` |
-| PO | Product Owner: MVP scope, roadmap, epics | `docs/discovery/21-mvp-roadmap.md` |
-| TL+DEV | Tech Lead and Developers: delivery plan, data model, estimates | `docs/discovery/22-delivery-plan.md` |
-| QA | QA lead: test strategy and quality gates | `docs/discovery/23-test-strategy.md` |
-| OPS | DevOps: environments, CI/CD, hosting, cost | `docs/discovery/24-devops-plan.md` |
-| REV | Review loop: cross-document review findings | `docs/discovery/30-review-log.md` |
+| #      | Role                                                                                                         | Output file                                            |
+| ------ | ------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
+| R1     | Market researcher: media and production management, studio ERPs                                              | `docs/discovery/research/R1-media-production-erp.md`   |
+| R2     | People Ops SME: HRIS, payroll, Sri Lanka statutory, attendance devices                                       | `docs/discovery/research/R2-hris-payroll-sri-lanka.md` |
+| R3     | Market researcher: POS, rental and booking, finance, SL payments and tax                                     | `docs/discovery/research/R3-pos-booking-finance.md`    |
+| R4     | Market researcher: creative ops (review/approval, DAM, rights and royalties, channel revenue, AI production) | `docs/discovery/research/R4-creative-ops-rights.md`    |
+| BA     | Business Analyst: BRD                                                                                        | `docs/discovery/10-brd.md`                             |
+| BA     | Business Analyst: gap analysis                                                                               | `docs/discovery/11-gap-analysis.md`                    |
+| PMM    | Product Marketing Manager: benchmark and USPs                                                                | `docs/discovery/12-benchmark-usp.md`                   |
+| PD     | Product Designer: UX, information architecture, journeys                                                     | `docs/discovery/13-ux-design.md`                       |
+| CFO    | CFO: business case, TCO, build vs buy, finance requirements                                                  | `docs/discovery/14-business-case.md`                   |
+| SEC    | Compliance and security                                                                                      | `docs/discovery/15-compliance-security.md`             |
+| SA     | Solution Architect: solution design                                                                          | `docs/discovery/20-solution-design.md`                 |
+| PO     | Product Owner: MVP scope, roadmap, epics                                                                     | `docs/discovery/21-mvp-roadmap.md`                     |
+| TL+DEV | Tech Lead and Developers: delivery plan, data model, estimates                                               | `docs/discovery/22-delivery-plan.md`                   |
+| QA     | QA lead: test strategy and quality gates                                                                     | `docs/discovery/23-test-strategy.md`                   |
+| OPS    | DevOps: environments, CI/CD, hosting, cost                                                                   | `docs/discovery/24-devops-plan.md`                     |
+| REV    | Review loop: cross-document review findings                                                                  | `docs/discovery/30-review-log.md`                      |
