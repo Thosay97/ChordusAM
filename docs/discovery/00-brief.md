@@ -75,3 +75,29 @@ What AMPL sells, according to its website:
 | QA     | QA lead: test strategy and quality gates                                                                     | `docs/discovery/23-test-strategy.md`                   |
 | OPS    | DevOps: environments, CI/CD, hosting, cost                                                                   | `docs/discovery/24-devops-plan.md`                     |
 | REV    | Review loop: cross-document review findings                                                                  | `docs/discovery/30-review-log.md`                      |
+
+## 7. Shared requirement ID scheme (all documents)
+
+Requirement IDs are `BR-<MODULE>-<NNN>` for business requirements and `NFR-<AREA>-<NNN>` for non-functional ones. The BA owns the numbering in `10-brd.md`. Other documents cite those IDs. Before the BRD exists, cite the research IDs (for example R2-14).
+
+| Code | Module                                                                           |
+| ---- | -------------------------------------------------------------------------------- |
+| CRM  | Clients, leads, quotes and estimates                                             |
+| PRJ  | Projects, jobs and the production pipeline (including music video stages)        |
+| BKG  | Studio, room, equipment and crew booking, plus equipment check-in and check-out  |
+| POS  | Point of sale, receipts, deposits, packages, vouchers and shifts                 |
+| SAL  | Sales invoices, receipts and receivables                                         |
+| VP   | Vendor and talent payments, vouchers and withholding tax                         |
+| FIN  | Management ledger, expenses, budgets, P&L, cash, multi-currency and multi-entity |
+| HR   | Core HR: employees, contracts, documents, onboarding and offboarding             |
+| ATT  | Attendance and time: device import, manual attendance, timesheets                |
+| LV   | Leave                                                                            |
+| PAY  | Payroll and statutory (EPF, ETF, APIT, gratuity) and payslips                    |
+| TAL  | Talent and freelancer pool, rate cards, contracts and consents                   |
+| AST  | Deliverables, assets, rights, licences, releases and channel revenue             |
+| AI   | AI tool subscriptions, credits and per-project AI cost attribution               |
+| APR  | Approval workflows (generic engine)                                              |
+| NOT  | Notifications (email, in-app, WhatsApp)                                          |
+| RPT  | Dashboards and reporting                                                         |
+| ADM  | Admin, settings, roles, multi-entity, audit                                      |
+| INT  | Integrations (accounting, payments, ClickUp, calendar)                           |
