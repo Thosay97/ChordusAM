@@ -1,23 +1,309 @@
 @import "tailwindcss";
 
-/* Alliance Media palette (PLAN.md section 3). Light theme only for now. */
+/*
+ * ChordusAM theme, matched to the AMPL website (alliancemedia.lk):
+ * dark ink and wine background, "liquid glass" panels, gold pill buttons,
+ * Cormorant Garamond headings, Inter body text and JetBrains Mono labels.
+ * The website's heavy effects (WebGL, custom cursor, SVG refraction) are left
+ * out on purpose: this is a daily work tool and has to stay fast and readable.
+ */
 @theme {
   --color-burgundy: #4a1528;
-  --color-burgundy-700: #3a1020;
-  --color-gold: #e8941a;
-  --color-tint: #f9f0f2;
+  --color-wine: #6b1f35;
+  --color-accent-dark: #3a1020;
+  --color-gold: #f5a623;
+  --color-deep-gold: #e8941a;
+  --color-soft-gold: #ffd166;
   --color-cream: #fbf8f5;
-  --color-ink: #1a1a2e;
+  --color-tint: #f9f0f2;
+  --color-rose: #c2185b;
+  --color-ink: #14060b;
+  --color-muted: #c8a8b0;
+  --color-text-dark: #1a0a10;
   --color-brand-green: #1a6040;
-  --font-sans: Arial, "Helvetica Neue", Helvetica, sans-serif;
+
+  --font-display: "Cormorant Garamond", "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+
+  --ease-brand: cubic-bezier(0.22, 0.8, 0.24, 1);
 }
 
 :root {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
-  background: var(--color-cream);
-  color: var(--color-ink);
+  background-color: var(--color-ink);
+  color: var(--color-cream);
   font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Wine glows on a fixed layer, so long pages and phones keep them while scrolling. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image:
+    radial-gradient(90% 70% at 85% -10%, rgb(107 31 53 / 0.75), transparent 60%),
+    radial-gradient(70% 60% at -10% 110%, rgb(58 16 32 / 0.9), transparent 65%);
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-soft-gold);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+@layer components {
+  /* Small mono label with a gold rule in front, as on the website. */
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+  .eyebrow::before {
+    content: "";
+    width: 34px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--color-gold));
+  }
+
+  .gold-text {
+    background: linear-gradient(
+      100deg,
+      var(--color-soft-gold) 0%,
+      #fff 38%,
+      var(--color-gold) 62%,
+      var(--color-rose) 118%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  /* Liquid glass panel. */
+  .glass {
+    position: relative;
+    isolation: isolate;
+    background: linear-gradient(
+      140deg,
+      rgb(255 255 255 / 0.14),
+      rgb(255 255 255 / 0.04) 48%,
+      rgb(255 209 102 / 0.06)
+    );
+    -webkit-backdrop-filter: blur(20px) saturate(1.5);
+    backdrop-filter: blur(20px) saturate(1.5);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.45),
+      inset 0 -1px 0 rgb(255 255 255 / 0.08),
+      inset 1px 0 0 rgb(255 255 255 / 0.14),
+      0 24px 60px -18px rgb(10 2 6 / 0.65),
+      0 2px 6px rgb(10 2 6 / 0.3);
+  }
+  /* Gold-tipped hairline edge. */
+  .glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    pointer-events: none;
+    background: linear-gradient(
+      150deg,
+      rgb(255 255 255 / 0.75),
+      rgb(255 255 255 / 0.06) 28%,
+      rgb(255 209 102 / 0) 55%,
+      rgb(255 209 102 / 0.45) 100%
+    );
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /* Pill buttons. */
+  .btn {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    height: 48px;
+    padding: 0 26px;
+    border: 0;
+    border-radius: 999px;
+    overflow: hidden;
+    isolation: isolate;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 0.74rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition:
+      box-shadow 0.5s var(--ease-brand),
+      filter 0.5s var(--ease-brand),
+      color 0.4s;
+  }
+  .btn:active {
+    transform: scale(0.985);
+  }
+  .btn:disabled {
+    opacity: 0.6;
+    cursor: default;
+  }
+  .btn-sm {
+    height: 36px;
+    padding: 0 16px;
+    font-size: 0.64rem;
+  }
+  .btn-gold {
+    color: #2a0a14;
+    background: linear-gradient(
+      180deg,
+      #ffe29a 0%,
+      var(--color-soft-gold) 22%,
+      var(--color-gold) 62%,
+      var(--color-deep-gold) 100%
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.85),
+      inset 0 -2px 6px rgb(160 80 0 / 0.35),
+      0 12px 34px -8px rgb(245 166 35 / 0.55),
+      0 2px 0 rgb(120 50 0 / 0.4);
+  }
+  /* Specular sweep on hover. */
+  .btn-gold::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgb(255 255 255 / 0.75) 50%,
+      transparent 65%
+    );
+    background-size: 260% 100%;
+    background-position: 130% 0;
+    transition: background-position 0.9s var(--ease-brand);
+  }
+  .btn-gold:hover {
+    filter: saturate(1.12) brightness(1.04);
+  }
+  .btn-gold:hover::before {
+    background-position: -30% 0;
+  }
+  .btn-glass {
+    color: var(--color-cream);
+    background: linear-gradient(
+      140deg,
+      rgb(255 255 255 / 0.14),
+      rgb(255 255 255 / 0.04) 55%,
+      rgb(255 209 102 / 0.08)
+    );
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.5),
+      inset 0 -1px 0 rgb(255 255 255 / 0.1),
+      0 10px 28px -14px rgb(10 2 6 / 0.7);
+  }
+  .btn-glass:hover {
+    color: #fff;
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.7),
+      inset 0 0 22px rgb(255 209 102 / 0.14),
+      0 0 0 1px rgb(255 209 102 / 0.35),
+      0 14px 34px -12px rgb(245 166 35 / 0.35);
+  }
+
+  /* Form fields. */
+  .field-label {
+    display: block;
+    margin-bottom: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.62rem;
+    letter-spacing: 0.26em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .field-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 0;
+    border-radius: 16px;
+    outline: 0;
+    background: rgb(20 6 11 / 0.4);
+    color: var(--color-cream);
+    font-size: 1rem;
+    box-shadow:
+      inset 0 1px 0 rgb(0 0 0 / 0.35),
+      inset 0 0 0 1px rgb(255 255 255 / 0.14);
+    transition:
+      box-shadow 0.3s,
+      background 0.3s;
+  }
+  .field-input::placeholder {
+    color: rgb(200 168 176 / 0.6);
+  }
+  .field-input:focus {
+    background: rgb(20 6 11 / 0.58);
+    box-shadow:
+      inset 0 0 0 1.5px var(--color-gold),
+      0 0 0 5px rgb(245 166 35 / 0.18);
+  }
+
+  /* Status messages. */
+  .msg {
+    padding: 12px 16px;
+    border-radius: 16px;
+    font-size: 0.9rem;
+  }
+  .msg-ok {
+    background: rgb(245 166 35 / 0.16);
+    color: var(--color-soft-gold);
+    box-shadow: inset 0 0 0 1px rgb(245 166 35 / 0.4);
+  }
+  .msg-err {
+    background: rgb(194 24 91 / 0.2);
+    color: #ffd0df;
+    box-shadow: inset 0 0 0 1px rgb(194 24 91 / 0.5);
+  }
+}
+
+/* Gentle entrance, as on the website. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+}
+.rise {
+  animation: rise 0.9s var(--ease-brand) both;
+  animation-delay: var(--d, 0s);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+  }
 }

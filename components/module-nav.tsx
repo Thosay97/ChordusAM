@@ -15,7 +15,7 @@ export function ModuleNav({ items }: { items: NavItem[] }) {
   const pathname = usePathname();
   const navRef = useRef<HTMLElement>(null);
 
-  // On a phone the tabs scroll sideways; keep the current module in view.
+  // On a phone the pills scroll sideways; keep the current module in view.
   useEffect(() => {
     navRef.current
       ?.querySelector<HTMLElement>('[aria-current="page"]')
@@ -23,7 +23,11 @@ export function ModuleNav({ items }: { items: NavItem[] }) {
   }, [pathname]);
 
   return (
-    <nav ref={navRef} aria-label="Modules" className="-mb-px flex gap-1 overflow-x-auto">
+    <nav
+      ref={navRef}
+      aria-label="Modules"
+      className="flex [scrollbar-width:none] gap-1 overflow-x-auto lg:justify-center"
+    >
       {items.map((item) => {
         const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
         return (
@@ -31,10 +35,10 @@ export function ModuleNav({ items }: { items: NavItem[] }) {
             key={item.key}
             href={item.href}
             aria-current={active ? "page" : undefined}
-            className={`shrink-0 border-b-2 px-3 py-2 text-sm font-medium whitespace-nowrap ${
+            className={`shrink-0 rounded-full px-3.5 py-2 text-[0.68rem] font-medium tracking-[0.16em] whitespace-nowrap uppercase transition-colors duration-300 ${
               active
-                ? "border-gold text-white"
-                : "border-transparent text-white/70 hover:border-white/40 hover:text-white"
+                ? "text-soft-gold bg-white/12 shadow-[inset_0_0_0_1px_rgb(245_166_35/0.35)]"
+                : "text-cream/75 hover:bg-white/10 hover:text-white"
             }`}
           >
             {item.label}

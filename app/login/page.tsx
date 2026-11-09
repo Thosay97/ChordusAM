@@ -17,31 +17,47 @@ export default async function LoginPage() {
   const demo = isDemoMode();
 
   return (
-    <main className="flex min-h-screen items-center justify-center px-4 py-10">
-      <div className="w-full max-w-sm">
-        <div className="mb-6 text-center">
-          <Logo className="text-burgundy text-3xl" />
-          <p className="text-ink/70 mt-1 text-sm">Alliance Media · people, studio and money</p>
+    <main className="relative flex min-h-screen items-center justify-center overflow-hidden px-4 py-12">
+      {/* Soft gold and rose glows, after the website's hero. */}
+      <span
+        aria-hidden="true"
+        className="bg-gold/25 pointer-events-none absolute -top-40 -right-40 h-[32rem] w-[32rem] rounded-full blur-[110px]"
+      />
+      <span
+        aria-hidden="true"
+        className="bg-rose/20 pointer-events-none absolute -bottom-48 -left-40 h-[30rem] w-[30rem] rounded-full blur-[110px]"
+      />
+
+      <div className="relative w-full max-w-md">
+        <div className="rise mb-8 flex flex-col items-center text-center">
+          <Logo size={52} className="text-lg" />
+          <h1 className="font-display mt-8 text-5xl leading-[0.92] font-semibold uppercase sm:text-6xl">
+            Welcome <em className="gold-text font-medium">back.</em>
+          </h1>
+          <p className="text-cream/75 mt-3 text-sm">People, studio and money, in one place.</p>
         </div>
 
-        <div className="border-ink/10 rounded-xl border bg-white p-6 shadow-sm">
+        <div
+          className="glass rise rounded-[32px] bg-[rgb(58_16_32/0.35)] p-6 sm:p-8"
+          style={{ "--d": "0.12s" } as React.CSSProperties}
+        >
           {demo ? (
             <div>
-              <h1 className="text-lg font-semibold">Demo mode</h1>
-              <p className="text-ink/70 mt-1 mb-4 text-sm">
+              <span className="eyebrow">Demo mode</span>
+              <p className="text-cream/75 mt-3 mb-5 text-sm">
                 No Supabase project is connected. Pick a demo user to look around.
               </p>
-              <ul className="space-y-2">
+              <ul className="space-y-2.5">
                 {DEMO_USERS.map((u) => (
                   <li key={u.id}>
                     <form action={signInAsDemoUser}>
                       <input type="hidden" name="userId" value={u.id} />
                       <button
                         type="submit"
-                        className="border-ink/15 hover:border-burgundy hover:bg-tint flex w-full items-center justify-between rounded-md border px-3 py-2 text-left text-sm"
+                        className="group flex w-full items-center justify-between rounded-2xl bg-white/5 px-4 py-3.5 text-left shadow-[inset_0_0_0_1px_rgb(255_255_255/0.12)] transition duration-300 hover:bg-white/10 hover:shadow-[inset_0_0_0_1px_rgb(245_166_35/0.45)]"
                       >
-                        <span>{u.fullName}</span>
-                        <span className="bg-tint text-burgundy rounded px-2 py-0.5 text-xs font-semibold">
+                        <span className="font-medium">{u.fullName}</span>
+                        <span className="text-gold font-mono text-[0.6rem] tracking-[0.22em] uppercase">
                           {ROLE_LABELS[u.role]}
                         </span>
                       </button>
@@ -52,11 +68,17 @@ export default async function LoginPage() {
             </div>
           ) : (
             <>
-              <h1 className="mb-4 text-lg font-semibold">Sign in</h1>
-              <LoginForms />
+              <span className="eyebrow">Sign in</span>
+              <div className="mt-5">
+                <LoginForms />
+              </div>
             </>
           )}
         </div>
+
+        <p className="text-muted mt-8 text-center font-mono text-[0.6rem] tracking-[0.2em] uppercase">
+          Alliance Media Company · Colombo
+        </p>
       </div>
     </main>
   );

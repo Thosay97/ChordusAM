@@ -7,7 +7,7 @@ Status: done, waiting for review. Branch: `claude/lucid-cannon-tzya3o`.
 | Area                                                                                      | Where                                                      |
 | ----------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | Next.js 15 + TypeScript strict, Tailwind, ESLint, Prettier                                | repo root                                                  |
-| Brand theme (burgundy, gold, tints, ink, green; Arial)                                    | `app/globals.css`                                          |
+| Brand theme matched to alliancemedia.lk (see "Look and feel" below)                       | `app/globals.css`, `components/logo.tsx`                   |
 | Roles, modules and the access matrix (single source of truth)                             | `lib/auth/roles.ts`                                        |
 | Pure `authorize()` (401 vs 403)                                                           | `lib/auth/authorize.ts`                                    |
 | Server guards for pages (`requireModule`) and API routes (`guardApi`)                     | `lib/auth/guards.ts`                                       |
@@ -46,6 +46,17 @@ A page outside your modules returns 404 (it does not reveal that the page exists
 
 `profiles.can_request_payments boolean` (default false). Section 2 describes this permission, but section 9 had no column for it. Tell me if you would rather model it differently (for example a separate permissions table).
 
+## Look and feel (updated 9 November 2026)
+
+Restyled to match the AMPL website (alliancemedia.lk):
+
+- **Palette:** ink `#14060B` background with wine `#6B1F35` and accent `#3A1020` glows; gold `#F5A623` (with deep gold `#E8941A` and soft gold `#FFD166`); cream text; rose `#C2185B` in gradients. These replace the PLAN.md section 3 values where they differ (gold and ink), because the website is the newer brand reference.
+- **Type:** Cormorant Garamond for headings (uppercase, with a gold italic word), Inter for text, JetBrains Mono for small tracked labels. Self-hosted through `@fontsource`, so the app makes no requests to Google.
+- **Components:** liquid-glass panels (`.glass`), gold and glass pill buttons (`.btn-gold`, `.btn-glass`), mono "eyebrow" labels, website-style form fields (`.field-label`, `.field-input`) and status messages (`.msg-ok`, `.msg-err`).
+- **Layout:** a floating glass header with the AMPL mark, like the website's nav. On a phone the module pills scroll sideways under the brand row.
+- **Left out on purpose:** WebGL backgrounds, the custom cursor, scroll-pinned sections and SVG refraction. This is a daily work tool, so it stays fast and readable. Entrance animations are short and switch off when the device asks for reduced motion.
+- **Logo and icons:** taken from the website file (`public/ampl-mark.png`, `app/icon.png`, `app/apple-icon.png`).
+
 ## Test results (5 November 2026)
 
 | Suite                                                                               | Result    |
@@ -72,7 +83,7 @@ Phase 0 acceptance:
 4. **HR, Finance and Admins can read all profiles** (name, email, role). Salary, NIC and bank details will live in other tables with stricter RLS.
 5. **Demo mode** is for looking around without Supabase. It switches on only when `CHORDUS_DEMO_MODE=true`, no Supabase project is configured, and it is not a Vercel production deployment.
 6. **shadcn/ui** is not installed yet. Phase 0 has no forms beyond login, so I will add it in Phase 1 with the employee and contract forms.
-7. **Light theme only** for now.
+7. **Dark theme only**, matching the website. A light theme can come later if people want it for long data-entry sessions.
 8. **Hosted Supabase** for real use, with the Supabase CLI optional for local work.
 
 ## What I need from you

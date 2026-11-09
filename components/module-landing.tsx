@@ -1,29 +1,45 @@
 import { MODULES, type ModuleKey, type SessionUser } from "@/lib/auth/roles";
 
+/** Splits "Vendor Payments" into "Vendor" + "Payments" so the last word can take the gold italic. */
+function splitTitle(label: string): [string, string] {
+  const i = label.lastIndexOf(" ");
+  return i === -1 ? ["", label] : [label.slice(0, i), label.slice(i + 1)];
+}
+
 /** Phase 0 landing page for a module: what it is for and what is coming, by build phase. */
 export function ModuleLanding({ module, user }: { module: ModuleKey; user: SessionUser }) {
   const def = MODULES[module];
+  const [lead, last] = splitTitle(def.label);
+
   return (
     <section>
-      <h1 className="text-burgundy text-2xl font-bold">{def.label}</h1>
-      <p className="text-ink/70 mt-1">{def.description}</p>
-      <p className="mt-4 text-sm">
-        Signed in as <strong>{user.fullName}</strong>.
-      </p>
+      <div className="rise">
+        <span className="eyebrow">Signed in as {user.fullName}</span>
+        <h1 className="font-display mt-4 text-5xl leading-[0.92] font-semibold tracking-[-0.01em] uppercase sm:text-7xl">
+          {lead && <>{lead} </>}
+          <em className="gold-text font-medium">{last}</em>
+        </h1>
+        <p className="text-cream/80 mt-5 max-w-xl text-base leading-relaxed sm:text-lg">
+          {def.description}
+        </p>
+      </div>
 
-      <h2 className="text-ink/60 mt-8 mb-3 text-sm font-semibold tracking-wide uppercase">
-        Coming in this module
-      </h2>
-      <ul className="grid gap-3 sm:grid-cols-2">
-        {def.features.map((f) => (
+      <div className="rise mt-12" style={{ "--d": "0.12s" } as React.CSSProperties}>
+        <span className="eyebrow">Coming in this module</span>
+      </div>
+      <ul className="mt-5 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {def.features.map((f, i) => (
           <li
             key={f.label}
-            className="border-ink/10 flex items-center justify-between gap-3 rounded-lg border bg-white px-4 py-3"
+            className="glass rise rounded-[26px] px-6 py-5"
+            style={{ "--d": `${0.16 + i * 0.06}s` } as React.CSSProperties}
           >
-            <span className="text-sm">{f.label}</span>
-            <span className="bg-tint text-burgundy shrink-0 rounded-full px-2 py-0.5 text-xs font-semibold">
+            <span className="text-gold font-mono text-[0.62rem] tracking-[0.24em] uppercase">
               Phase {f.phase}
             </span>
+            <h2 className="font-display mt-2 text-2xl leading-tight font-semibold italic">
+              {f.label}
+            </h2>
           </li>
         ))}
       </ul>
