@@ -435,6 +435,8 @@ flowchart LR
 
 **My recommendation:** Option B with the PO's velocity check made formal: if Release 0 week 3 and Increment 1 show my estimates are high (the AI effect is better than I assume), the plan pulls in and the PO's April date comes back into reach; if they show the PO's estimates were right, we have lost nothing but spare capacity, which goes to Release 1. Option C is the safe choice if the owner will not raise the cap before seeing results. **In all options, do not compress Release 0** by building stubs: retrofitting tenancy, permissions or money types later is the expensive mistake the whole discovery set warns about.
 
+**Option F (agent-built), added after this plan.** The owner asked for a delivery model in which Claude agents write all the code. It is described in `25-agent-built-option.md`. It keeps this plan's scope, order and gates, replaces most engineering headcount with agents and a part-time reviewer, and starts with a two-week pilot on EP-01 to measure real throughput before any date or cost is set.
+
 **Delta against the CFO's ranges (`14-business-case.md` §3.2, §3.5).** For both phases the CFO estimated 75 to 118 pw before AI and 57.9 pw after the lean 40% effect (recommended, LKR 7.7m). My R0 + MVP + Release 1 (without conditionals) is 251 / 342 / 490 ideal days = **67 / 91 / 131 pw after the AI effect**, about **+33 pw (+58%)** on the CFO's recommended figure and inside the CFO's **before-AI** range of 75 to 118 pw. Per CFO row, my module figures are at or below the CFO's before-AI numbers; the foundation row (CFO 6 to 10 pw before AI; mine 21 to 41 pw including enablers, admin and notification wiring) explains about half of the delta, and dropping the extra 40% AI cut explains the rest.
 
 ---

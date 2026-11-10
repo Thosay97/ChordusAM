@@ -14,6 +14,7 @@ This is the discovery work for turning ChordusAM into a **Media and Studio ERP w
 | 5   | [20-solution-design.md](20-solution-design.md)         | Solution Architect      | Architecture decisions, modules, domain model, flows, integrations, scaling path                |
 | 6   | [22a-foundation-spike.md](22a-foundation-spike.md)     | Developer               | Measured proof of the riskiest foundation decisions on real Postgres                            |
 | 7   | [22-delivery-plan.md](22-delivery-plan.md)             | Tech Lead               | Work breakdown, estimates, team, conventions, timeline                                          |
+| 7a  | [25-agent-built-option.md](25-agent-built-option.md)   | Lead                    | Option F: building ChordusAM with Claude agents, the human gates, and a two-week pilot          |
 | 8   | [13-ux-design.md](13-ux-design.md)                     | Product Designer        | Personas, information architecture, journeys, MVP screens, wireframes                           |
 | 9   | [14-business-case.md](14-business-case.md)             | CFO                     | Buy vs build vs hybrid, 3-year TCO, benefits, payback, finance controls                         |
 | 10  | [15-compliance-security.md](15-compliance-security.md) | Compliance and Security | Regulatory register, PDPA, threat model, controls, Phase 0 security review                      |
