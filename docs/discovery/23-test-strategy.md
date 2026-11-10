@@ -523,15 +523,15 @@ Every test title carries the requirement or rule IDs it proves, in square bracke
 
 #### APR (7 Must)
 
-| BR         | Layers | Example test cases                                                                                                              |
-| ---------- | ------ | ------------------------------------------------------------------------------------------------------------------------------- |
-| BR-APR-001 | U D    | Each starter policy in `20-solution-design.md` §6.6 routes as written; policies are data                                        |
-| BR-APR-002 | D P    | Two Admins approve at the same moment: one succeeds, the other sees "Already approved by …" (partial unique index, BRULE-009)   |
-| BR-APR-003 | D A    | Self-approval refused by trigger; a delegate of the requester refused; the step routes to another eligible approver (BRULE-002) |
-| BR-APR-004 | D U    | Requester ≠ approver ≠ payer on payments and payroll; refund supervisor ≠ cashier (BRULE-007, 060)                              |
-| BR-APR-005 | U D    | SLA escalation with an injected clock; the sweep is idempotent                                                                  |
-| BR-APR-007 | E X C  | One-tap approve on Pixel 7; money approvals repeat amount and payee; reject and return need a comment; 8-second undo; axe clean |
-| BR-APR-008 | D      | Every decision has actor, time, step, comment, before and after, and `subject_hash` in the audit log                            |
+| BR         | Layers | Example test cases                                                                                                                             |
+| ---------- | ------ | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| BR-APR-001 | U D    | Each starter policy in `20-solution-design.md` §6.6 routes as written; policies are data                                                       |
+| BR-APR-002 | D P    | Two Admins approve at the same moment: one succeeds, the other sees "Already approved by …" (`decision_slot` unique index, 20 §6.4, BRULE-009) |
+| BR-APR-003 | D A    | Self-approval refused by trigger; a delegate of the requester refused; the step routes to another eligible approver (BRULE-002)                |
+| BR-APR-004 | D U    | Requester ≠ approver ≠ payer on payments and payroll; refund supervisor ≠ cashier (BRULE-007, 060)                                             |
+| BR-APR-005 | U D    | SLA escalation with an injected clock; the sweep is idempotent                                                                                 |
+| BR-APR-007 | E X C  | One-tap approve on Pixel 7; money approvals repeat amount and payee; reject and return need a comment; 8-second undo; axe clean                |
+| BR-APR-008 | D      | Every decision has actor, time, step, comment, before and after, and `subject_hash` in the audit log                                           |
 
 #### NOT (2 Must)
 
@@ -585,7 +585,7 @@ Every rule has a function in `lib/rules/` (or a database guarantee where marked 
 | 006   | `apr/escalate`                                                | U D   | 1 day 23 h 59 m: Admin cannot skip HR; 2 days: Admin can decide directly (injected clock)                           |
 | 007   | **DB** payer check                                            | D     | Requester marks paid refused; final approver marks paid refused when policy says so                                 |
 | 008   | `apr/resolveCandidates`                                       | U D   | All three Admins in the run: one scoped task per Admin, each decided by a different Admin                           |
-| 009   | **DB** partial unique index                                   | D P   | Concurrent second decision refused                                                                                  |
+| 009   | **DB** `decision_slot` unique index (20 §6.4)                 | D P   | Concurrent second decision refused                                                                                  |
 | 010   | `apr/canAct` with delegations                                 | U     | Delegation outside its date range refused; delegated approvals listed for owner review within 5 working days        |
 | 011   | `att/canRequestManual`                                        | U D   | Approved leave blocks; pending leave warns only (proposed)                                                          |
 | 012   | `att/mergePunches` + **DB**                                   | U D   | Re-import over an approved manual day, an approved leave day and an Admin correction                                |
@@ -721,19 +721,19 @@ All figures are in LKR unless stated, computed in minor units. Where a value is 
 
 ### 3.6 Non-functional requirements
 
-| NFR group            | How it is tested                                                                                                                                              | Gate                 |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
-| NFR-SEC-001 to 025   | Section 2.9; MFA and AAL in DB tests; headers in e2e; ZAP; backups by the restore drill                                                                       | Per PR, pre-release  |
-| NFR-PRIV-001 to 017  | Consent, notice and retention as DB tests; erasure path tested on synthetic people including files and exports; DSR workflow in UAT                           | Per PR, G1, G5       |
-| NFR-AUD-001 to 012   | Redaction, read logging, system actors, hash chain verify action, append-only evidence, rule versions on runs                                                 | Per PR               |
-| NFR-PERF-001 to 004  | Section 2.8                                                                                                                                                   | Nightly, pre-release |
-| NFR-AVAIL-001 to 004 | Offline POS (2.7); restore drill; uptime from monitoring after go-live (`24-devops-plan.md`)                                                                  | Nightly, quarterly   |
-| NFR-MOB-001 to 003   | Pixel 7 and 360 px projects; touch-target size check in component tests; camera permission only on scan pages                                                 | Per PR               |
-| NFR-A11Y-001 to 003  | axe, contrast unit test, manual TalkBack                                                                                                                      | Per PR, release      |
-| NFR-I18N-001 to 004  | Lint rule: no string literals in new module UI; formatting module unit tests per locale; Sinhala and Tamil PDFs (visual)                                      | Per PR               |
-| NFR-SCALE-001 to 005 | Meta-test: every business table has `entity_id` and `tenant_id`; cross-entity and cross-tenant RLS tests; adapter contract tests                              | Per PR               |
-| NFR-COST-003         | Timed UAT task: Finance loads a new rate version and reruns a draft                                                                                           | UAT                  |
-| NFR-DATA-001 to 004  | Retention job on synthetic data; NIC, TIN and phone validators; export of all entity data; meta-test that no money column is float or `numeric` without scale | Per PR               |
+| NFR group            | How it is tested                                                                                                                                                                                                    | Gate                 |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| NFR-SEC-001 to 025   | Section 2.9; MFA and AAL in DB tests; headers in e2e; ZAP; backups by the restore drill                                                                                                                             | Per PR, pre-release  |
+| NFR-PRIV-001 to 017  | Consent, notice and retention as DB tests; erasure path tested on synthetic people including files and exports; DSR workflow in UAT                                                                                 | Per PR, G1, G5       |
+| NFR-AUD-001 to 012   | Redaction, read logging, system actors, hash chain verify action, append-only evidence, rule versions on runs                                                                                                       | Per PR               |
+| NFR-PERF-001 to 004  | Section 2.8                                                                                                                                                                                                         | Nightly, pre-release |
+| NFR-AVAIL-001 to 004 | Offline POS (2.7); restore drill; uptime from monitoring after go-live (`24-devops-plan.md`)                                                                                                                        | Nightly, quarterly   |
+| NFR-MOB-001 to 003   | Pixel 7 and 360 px projects; touch-target size check in component tests; camera permission only on scan pages                                                                                                       | Per PR               |
+| NFR-A11Y-001 to 003  | axe, contrast unit test, manual TalkBack                                                                                                                                                                            | Per PR, release      |
+| NFR-I18N-001 to 004  | Lint rule: no string literals in new module UI; formatting module unit tests per locale; Sinhala and Tamil PDFs (visual)                                                                                            | Per PR               |
+| NFR-SCALE-001 to 005 | Meta-test: every business table has `entity_id` and `tenant_id`; cross-entity and cross-tenant RLS tests; adapter contract tests                                                                                    | Per PR               |
+| NFR-COST-003         | Timed UAT task: Finance loads a new rate version and reruns a draft                                                                                                                                                 | UAT                  |
+| NFR-DATA-001 to 004  | Retention job on synthetic data; NIC, TIN and phone validators; export of all entity data; meta-test that every money column is `bigint` minor units (no float, no `numeric` amount column; rates may be `numeric`) | Per PR               |
 
 ---
 

@@ -4,22 +4,22 @@ This is the discovery work for turning ChordusAM into a **Media and Studio ERP w
 
 ## Read in this order
 
-| #   | Document                                               | Role                    | What it answers                                                                   |
-| --- | ------------------------------------------------------ | ----------------------- | --------------------------------------------------------------------------------- |
-| 0   | [00-brief.md](00-brief.md)                             | Lead                    | The ask, company context, rules, requirement ID scheme                            |
-| 1   | [10-brd.md](10-brd.md)                                 | Business Analyst        | Business requirements: 222 BRs, 84 NFRs, 71 business rules, 54 open questions     |
-| 2   | [11-gap-analysis.md](11-gap-analysis.md)               | Business Analyst        | Gaps: today vs to-be, PLAN.md vs BRD, market vs ChordusAM                         |
-| 3   | [12-benchmark-usp.md](12-benchmark-usp.md)             | Product Marketing       | Weighted benchmark of 10 comparators, positioning, USPs, adoption plan            |
-| 4   | [21-mvp-roadmap.md](21-mvp-roadmap.md)                 | Product Owner           | MVP scope (133 BRs), releases, epics, user stories, owner decisions with defaults |
-| 5   | [20-solution-design.md](20-solution-design.md)         | Solution Architect      | Architecture decisions, modules, domain model, flows, integrations, scaling path  |
-| 6   | [22a-foundation-spike.md](22a-foundation-spike.md)     | Developer               | Measured proof of the riskiest foundation decisions on real Postgres              |
-| 7   | [22-delivery-plan.md](22-delivery-plan.md)             | Tech Lead               | Work breakdown, estimates, team, conventions, timeline                            |
-| 8   | [13-ux-design.md](13-ux-design.md)                     | Product Designer        | Personas, information architecture, journeys, MVP screens, wireframes             |
-| 9   | [14-business-case.md](14-business-case.md)             | CFO                     | Buy vs build vs hybrid, 3-year TCO, benefits, payback, finance controls           |
-| 10  | [15-compliance-security.md](15-compliance-security.md) | Compliance and Security | Regulatory register, PDPA, threat model, controls, Phase 0 security review        |
-| 11  | [23-test-strategy.md](23-test-strategy.md)             | QA Lead                 | Test pyramid, traceability to Must BRs, UAT and payroll parallel run              |
-| 12  | [24-devops-plan.md](24-devops-plan.md)                 | DevOps                  | Environments, CI/CD, region, backups and DR, observability, running cost          |
-| 13  | [30-review-log.md](30-review-log.md)                   | Reviewer                | Cross-document review: conflicts found and how they were resolved                 |
+| #   | Document                                               | Role                    | What it answers                                                                                 |
+| --- | ------------------------------------------------------ | ----------------------- | ----------------------------------------------------------------------------------------------- |
+| 0   | [00-brief.md](00-brief.md)                             | Lead                    | The ask, company context, rules, requirement ID scheme                                          |
+| 1   | [10-brd.md](10-brd.md)                                 | Business Analyst        | Business requirements: 222 BRs (133 in R0 + MVP), 84 NFRs, 71 business rules, 54 open questions |
+| 2   | [11-gap-analysis.md](11-gap-analysis.md)               | Business Analyst        | Gaps: today vs to-be, PLAN.md vs BRD, market vs ChordusAM                                       |
+| 3   | [12-benchmark-usp.md](12-benchmark-usp.md)             | Product Marketing       | Weighted benchmark of 10 comparators, positioning, USPs, adoption plan                          |
+| 4   | [21-mvp-roadmap.md](21-mvp-roadmap.md)                 | Product Owner           | MVP scope (133 BRs), releases, epics, user stories, owner decisions with defaults               |
+| 5   | [20-solution-design.md](20-solution-design.md)         | Solution Architect      | Architecture decisions, modules, domain model, flows, integrations, scaling path                |
+| 6   | [22a-foundation-spike.md](22a-foundation-spike.md)     | Developer               | Measured proof of the riskiest foundation decisions on real Postgres                            |
+| 7   | [22-delivery-plan.md](22-delivery-plan.md)             | Tech Lead               | Work breakdown, estimates, team, conventions, timeline                                          |
+| 8   | [13-ux-design.md](13-ux-design.md)                     | Product Designer        | Personas, information architecture, journeys, MVP screens, wireframes                           |
+| 9   | [14-business-case.md](14-business-case.md)             | CFO                     | Buy vs build vs hybrid, 3-year TCO, benefits, payback, finance controls                         |
+| 10  | [15-compliance-security.md](15-compliance-security.md) | Compliance and Security | Regulatory register, PDPA, threat model, controls, Phase 0 security review                      |
+| 11  | [23-test-strategy.md](23-test-strategy.md)             | QA Lead                 | Test pyramid, traceability to Must BRs, UAT and payroll parallel run                            |
+| 12  | [24-devops-plan.md](24-devops-plan.md)                 | DevOps                  | Environments, CI/CD, region, backups and DR, observability, running cost                        |
+| 13  | [30-review-log.md](30-review-log.md)                   | Reviewer                | Cross-document review: conflicts found and how they were resolved                               |
 
 ## Research (sources for everything above)
 
@@ -34,4 +34,5 @@ This is the discovery work for turning ChordusAM into a **Media and Studio ERP w
 
 - These are **drafts for owner review** (version 0.1). Nothing in them is approved until the owner decides the open questions in `21-mvp-roadmap.md` section 8.2.
 - Several vendor and government sites could not be fetched directly. Facts taken from search results are marked "(unverified)" where they could not be confirmed. Tax rates and statutory values must be confirmed by AMPL's accountant before they go into code.
-- Dates, costs and estimates are planning figures, not commitments.
+- Dates, costs and estimates are planning figures, not commitments. Where they differ, the Tech Lead's estimate in `22-delivery-plan.md` §1.2 and §3.10 (about 274 ideal engineer-days; MVP 2 July 2027 for about LKR 12m with three engineers, or Release 0 + Increment 1 within the LKR 6.0m cap) is the current best estimate; the PO's 14 weeks and LKR 5.4m in `21-mvp-roadmap.md` are the PO's case. Choosing the funding option is an owner decision (`30-review-log.md` §3).
+- The cross-document review (`30-review-log.md`, 10 November 2026) aligned the BRD's MVP column with the PO's cut, the money type with ADR-15, and the RLS, numbering and approval patterns in `20-solution-design.md` with the foundation spike.

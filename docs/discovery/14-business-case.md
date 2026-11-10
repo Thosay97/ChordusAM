@@ -31,6 +31,8 @@ Exchange rate assumption: **USD 1 = LKR 333** (section 2.1). NPV is incremental 
 
 How to read it: Option A's TCO is zero, but its true cost is the benefit it forgoes, about LKR 5.4m a year (section 4). The TCO ranges are wide because the scope is not yet sized by the Tech Lead (`docs/discovery/22-delivery-plan.md`).
 
+> **Review note (10 November 2026, `30-review-log.md` RV-04 and RV-06).** The Tech Lead has now sized the scope. The **current best estimate** is `22-delivery-plan.md` §1.2 and §3.10: about 274 ideal engineer-days (range 200 to 390) for Release 0 + MVP; with three engineers (Option B) the MVP ends on 2 July 2027 for about **LKR 12m** (range 10 to 15), against the LKR 7.7m this document assumes for both phases and the PO's LKR 5.4m for Release 0 + MVP (`21-mvp-roadmap.md` §3.2). Within the LKR 6.0m Gate 1 cap (Option C) the build covers Release 0 + Increment 1 "Pay right" only. The build costs, TCO, NPV and payback for Option E lean in this document have **not** been recomputed on the Tech Lead's figures; read them as optimistic. Which funding option applies is an owner decision (`21` §8.2 item 3, `22` TL-1). Separately, `24-devops-plan.md` §8 puts the monthly run cost at about USD 412 (about LKR 137,000) from Phase 7, above A-14's USD 262 base, which takes the all-in run cost to about LKR 237,000 a month, about LKR 37,000 over NFR-COST-001 (`24` OPS-Q-03). The CFO should re-base A-14 and the TCO in the next revision.
+
 ---
 
 ## 2. Options analysis
@@ -571,27 +573,27 @@ Each KPI has a definition and a baseline from the Gate 0 study. Targets below ar
 
 ## 9. Assumption register
 
-| ID   | Assumption                                                                 | Value (c / b / o)                         | Owner to verify              |
-| ---- | -------------------------------------------------------------------------- | ----------------------------------------- | ---------------------------- |
-| A-01 | USD/LKR                                                                    | 333 (sensitivity 300 / 370)               | CFO, on decision date        |
-| A-02 | SGD/LKR                                                                    | 260 (unverified for November)             | CFO                          |
-| A-03 | INR/USD (Odoo billing)                                                     | 93.9                                      | CFO                          |
-| A-04 | Staff and users                                                            | 20 staff, about 25 users                  | Thoshan                      |
-| A-05 | Revenue                                                                    | LKR 60m / 90m / 140m                      | Janaka                       |
-| A-06 | Common costs excluded (accountant's package, PayHere fees, existing tools) | –                                         | –                            |
-| A-07 | Phase 0 is sunk                                                            | –                                         | –                            |
-| A-08 | Recurring cost escalation                                                  | 10% / 8% / 5% a year                      | CFO                          |
-| A-09 | Loaded hourly cost by role                                                 | LKR 710 to 3,500                          | Janaka                       |
-| A-10 | Build effort before AI, E                                                  | 118 / 96.5 / 75 pw                        | Tech Lead (22-delivery-plan) |
-| A-11 | AI effort reduction                                                        | 10% / 25% / 40%                           | Tech Lead, tracked           |
-| A-12 | Rate per person-week                                                       | LKR 300k / 150k / 115k                    | Thoshan                      |
-| A-13 | Contingency                                                                | 25% / 15% / 10%                           | CFO                          |
-| A-14 | Running cost, AMPL                                                         | USD 514 / 262 / 125 a month               | DevOps (24-devops-plan)      |
-| A-15 | Maintenance                                                                | E: 11 / 8 / 6 pw a year; D: 16 / 12 / 8   | Tech Lead                    |
-| A-16 | Benefit drivers                                                            | Section 4.1 to 4.6                        | Gate 0 study                 |
-| A-17 | Option capture and ramp                                                    | Section 4.7                               | CFO                          |
-| A-18 | Discount rate                                                              | 18% (sensitivity 14% / 24%)               | CFO                          |
-| A-19 | B implementation, C implementation and customisation, C support            | Ranges in sections 2.3 and 2.4; no quotes | CFO, vendor quotes           |
-| A-20 | WHT penalty factor and APIT penalty values                                 | Placeholders (unverified)                 | Accountant                   |
+| ID   | Assumption                                                                 | Value (c / b / o)                                                                      | Owner to verify              |
+| ---- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | ---------------------------- |
+| A-01 | USD/LKR                                                                    | 333 (sensitivity 300 / 370)                                                            | CFO, on decision date        |
+| A-02 | SGD/LKR                                                                    | 260 (unverified for November)                                                          | CFO                          |
+| A-03 | INR/USD (Odoo billing)                                                     | 93.9                                                                                   | CFO                          |
+| A-04 | Staff and users                                                            | 20 staff, about 25 users                                                               | Thoshan                      |
+| A-05 | Revenue                                                                    | LKR 60m / 90m / 140m                                                                   | Janaka                       |
+| A-06 | Common costs excluded (accountant's package, PayHere fees, existing tools) | –                                                                                      | –                            |
+| A-07 | Phase 0 is sunk                                                            | –                                                                                      | –                            |
+| A-08 | Recurring cost escalation                                                  | 10% / 8% / 5% a year                                                                   | CFO                          |
+| A-09 | Loaded hourly cost by role                                                 | LKR 710 to 3,500                                                                       | Janaka                       |
+| A-10 | Build effort before AI, E                                                  | 118 / 96.5 / 75 pw                                                                     | Tech Lead (22-delivery-plan) |
+| A-11 | AI effort reduction                                                        | 10% / 25% / 40%                                                                        | Tech Lead, tracked           |
+| A-12 | Rate per person-week                                                       | LKR 300k / 150k / 115k                                                                 | Thoshan                      |
+| A-13 | Contingency                                                                | 25% / 15% / 10%                                                                        | CFO                          |
+| A-14 | Running cost, AMPL                                                         | USD 514 / 262 / 125 a month (24 §8: about USD 412 from Phase 7; re-base, review RV-06) | DevOps (24-devops-plan)      |
+| A-15 | Maintenance                                                                | E: 11 / 8 / 6 pw a year; D: 16 / 12 / 8                                                | Tech Lead                    |
+| A-16 | Benefit drivers                                                            | Section 4.1 to 4.6                                                                     | Gate 0 study                 |
+| A-17 | Option capture and ramp                                                    | Section 4.7                                                                            | CFO                          |
+| A-18 | Discount rate                                                              | 18% (sensitivity 14% / 24%)                                                            | CFO                          |
+| A-19 | B implementation, C implementation and customisation, C support            | Ranges in sections 2.3 and 2.4; no quotes                                              | CFO, vendor quotes           |
+| A-20 | WHT penalty factor and APIT penalty values                                 | Placeholders (unverified)                                                              | Accountant                   |
 
 The model behind these tables is a short Python script. The CFO can re-run it when the Gate 0 data arrives. It is kept outside the repository because the brief allows no code changes in this exercise.
